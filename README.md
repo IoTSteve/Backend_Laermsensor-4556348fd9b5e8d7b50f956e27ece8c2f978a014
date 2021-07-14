@@ -21,7 +21,7 @@
 # Inbetriebnahme
 <br>
 
-voraussetzung zur Inbetriebnahme des Backends ist node.js
+Voraussetzung zur Inbetriebnahme des Backends ist node.js
 <br>
 Nachdem dann das Repo heruntergladen wurde wird es mit 
 ```
