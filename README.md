@@ -48,9 +48,9 @@ TTN_USR= <TTN user id>
 <br>
 <br>
 
-## Sensor Eisntellungen
+## Sensor Einstellungen
 Um den Sensor in Betrieb zu nehmen muss man in der soundmodule_V2.ino nur ein paar Variablen anpassen.
-In Zeile 33 und 34 müssen die Wifi Zugangsdaten eingetragen werden und in Zeile 159 das MQTT topic damit die Sensordaten nicht an die öffentliche Anwendung geschickt werden.
+In Zeile 33 und 34 müssen die Wifi Zugangsdaten eingetragen werden und in Zeile 159 das MQTT topic, damit die Sensordaten nicht an die öffentliche Anwendung geschickt werden.
 
 <br>
 <br>
@@ -78,7 +78,7 @@ Hier sieht man den Funktionsflow des Systems und welche Funktionen vom Konzept v
 ## Sensor Prototypen
 
 Hier sieht man die Prototypen der Sensoren. Diese Basieren auf einem ESP8266 Mikrocontroller und einem Max 9814 Mikrofonmodul. Diese Schicken alle 30 Sekunden einen Messwert über WiFi und MQTT an das Backend.
-Im Konzept sind allerdings Heltec WiFi LoRa 32 Module, die per TTN ihre Daten an das Backend übermitteln, vorgesehen. Zur besseren Prototypisierung eines Sensors wurde allerdings hier an dieser Stelle auf WiFi zurückgegriffen. Gut zu sehen ist hier auch noch, dass die Sensoren noch per USB Kabel mit Energie versorgt werden. Im finalen Produkt wird die Energieversorgung dann über ein Solarmodul in Kombination mit einem Lipo Akku, der über eine Ladeelektronik geladen wird, gewährleistet. Dies erlaubt es, dass die Sensoren autark und ohne externe Stromversorgung laufen können. Um dann noch zusätzlich Energie einsparen zu können kann der Sensor zwischen jedem Messzyklus in einen deep sleep Modus versetzt werden. Dies bedeutet dass er alle 30 Sekunden "aufwacht", einen Messwert übermittelt und danach wieder in den sleep Modus fällt. Dies sollte auf längere Sicht deutlich Energie einsparen und somit zu einer längeren Laufzeit des Systems beitragen.
+Im Konzept sind allerdings Heltec WiFi LoRa 32 Module, die per TTN ihre Daten an das Backend übermitteln, vorgesehen. Zur besseren Prototypisierung eines Sensors wurde allerdings hier an dieser Stelle auf WiFi zurückgegriffen. Gut zu sehen ist hier auch noch, dass die Sensoren noch per USB Kabel mit Energie versorgt werden. Im finalen Produkt wird die Energieversorgung dann über ein Solarmodul in Kombination mit einem Lipo Akku, der über eine Ladeelektronik geladen wird, gewährleistet. Dies erlaubt es, dass die Sensoren autark und ohne externe Stromversorgung laufen können. Um dann noch zusätzlich Energie einsparen zu können kann der Sensor zwischen jedem Messzyklus in einen deep sleep Modus versetzt werden. Dies bedeutet, dass er alle 30 Sekunden "aufwacht", einen Messwert übermittelt und danach wieder in den sleep Modus fällt. Dies sollte auf längere Sicht deutlich Energie einsparen und somit zu einer längeren Laufzeit des Systems beitragen.
 
 ![alt text](sensoren.jpg "sensoren")
 
@@ -123,18 +123,18 @@ Dadurch, dass von jedem Sensor alle 30 Sekunden ein Messwert ausgeht, ist der Sp
 
 
 
-## REST API nutzung
+## REST API Nutzung
 
 <br>
 
-Eine get Anfrage auf `/getSoundData` gibt die Sounddaten Collection aus in der alle Messwertdatensätze gelistet sind.
+Eine GET Anfrage auf `/getSoundData` gibt die Sounddaten Collection aus in der alle Messwertdatensätze gelistet sind.
 
 
 <br>
 <br>
 
-Mit einer post Anfrage auf `/addSensor` mit dem Inhalt deviceId, long, lat und adress (nachzusehen in der route addSensor.js) können Sensoren mit den dazugehörigen Metadaten hinzugefügt werden.
-Alternativ exisitert hier auch eine Frontend Seite die den Registrierprozess simuliert. In diesem Prozess soll mithilfe eines QR Codes, auf dem die MAC Adresse gespeichert ist, und über die longitude und latitude des mobile devices, auf dem die Inbetriebnahme durchgeführt wird, der Sensor zum System hinzugefügt. Zusätzlich kann hier auch noch eine Adresse mitgeschickt werden die man manuell eingibt. Um dies zu Simulieren wurde eine schlichte html Seite erstellt, die diese Aufgabe übernimmt und über eine manuelle Eingabe die Daten in die Datenbank schreibt. Allerdings müsste beim manuellen hinzufügen eines Sensors noch ein SoundData Objekt angelegt werden mit der dazugehörigen id, sodass das Frontend keinen Fehler wirft. Bei einem realen Sensor passiert dies allerdings nicht, da er sobald er eingeschaltet wird, automatisch Messwerte in die Datenbank schreibt.
+Mit einer POST Anfrage auf `/addSensor` mit dem Inhalt deviceId, long, lat und adress (nachzusehen in der route addSensor.js und im beigefügten Model) können Sensoren mit den dazugehörigen Metadaten hinzugefügt werden.
+Alternativ exisitert hier auch eine Frontend Seite die den Registrierprozess simuliert. In diesem Prozess soll mithilfe eines QR Codes, auf dem die MAC Adresse gespeichert ist, und über die longitude und latitude des mobile devices, auf dem die Inbetriebnahme durchgeführt wird, der Sensor zum System hinzugefügt werden. Zusätzlich kann hier auch noch eine Adresse mitgeschickt werden die man manuell eingibt. Um dies zu Simulieren wurde eine schlichte html Seite erstellt, die diese Aufgabe übernimmt und über eine manuelle Eingabe die Daten in die Datenbank schreibt. Allerdings müsste beim manuellen Hinzufügen eines Sensors noch ein SoundData Objekt angelegt werden mit der dazugehörigen id, sodass das Frontend keinen Fehler wirft. Bei einem realen Sensor passiert dies allerdings nicht, da er sobald er eingeschaltet wird, automatisch Messwerte in die Datenbank schreibt.
 
 <br>
 <br>
