@@ -142,6 +142,10 @@ Alternativ exisitert hier auch eine Frontend Seite die den Registrierprozess sim
 Aufrufen kann man diese dann unter `https://soundsensefe.ds.ava.hfg.design/#/reg`
 
 <br>
+
+Das öffentliche Backend ist erreichbar unter `soundsenseiotbe.ds.ava.hfg.design`
+
+<br>
 <br>
 
 
